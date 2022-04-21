@@ -7,7 +7,6 @@ export default function DropDown({ label, list, state, setState }) {
     <div>
       <div>
         <div className="label">{label && label} : </div>
-        <div className="value">{state && state}</div>
         <div onClick={() => setShowDropDown(true)}>
           {!showDropDown ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
         </div>
