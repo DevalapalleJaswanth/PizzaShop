@@ -1,0 +1,30 @@
+.add-block {
+  border: 1px solid rgb(252, 75, 31);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add {
+  padding: 15px;
+  color: rgb(252, 75, 31);
+}
+.add:hover {
+  background-color: rgba(252, 75, 31, 0.37);
+  color: white;
+}
+
+.count {
+  padding: 15px;
+  color: black;
+}
+
+.delete {
+  padding: 15px;
+  color: rgb(252, 75, 31);
+}
+.delete:hover {
+  background-color: rgba(252, 75, 31, 0.37);
+  color: white;
+}
