@@ -8,36 +8,19 @@ import allActions from './Actions';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import moment from 'moment';
+
 export default function App() {
   const dispatch = useDispatch();
   const mutualFund = useSelector((state) => state.PizzaList);
   const user = useSelector((state) => state.User);
-  // useEffect(() => {
-  //   const fetchfunc = async (api) => {
-  //     let resp = await axios.get(api);
-  //     let data = await resp.data;
-  //     if (data && data.data.length > 0) {
-  //       let temp = data.data.map((ele, i) => {
-  //         let pair = Object.values(ele);
-  //         pair[0] = Number(moment(pair[0], 'DD-MM-YYYY').format('x'));
-  //         pair[1] = Number(pair[1]);
-  //         return pair;
-  //       });
+  useEffect(() => {
+    let resp = axios
+      .get('https://6215fab47428a1d2a3567953.mockapi.io/user')
+      .then((resp) => console.log(resp.data))
+      .catch((err) => console.log(err));
 
-  //       let mfDetails = {
-  //         meta: data.meta,
-  //         data: temp.reverse(),
-  //       };
-  //       dispatch(allActions.MutualFundActions.getMFData(mfDetails));
-  //     }
-  //   };
-  //   fetchfunc('https://api.mfapi.in/mf/100350');
-  //   fetchfunc('https://api.mfapi.in/mf/100590');
-  //   fetchfunc('https://api.mfapi.in/mf/100717');
-  //   fetchfunc('https://api.mfapi.in/mf/100036');
-  //   fetchfunc('https://api.mfapi.in/mf/100122');
-  // }, []);
+    //  dispatch(allActions.MutualFundActions.getMFData(mfDetails));
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>

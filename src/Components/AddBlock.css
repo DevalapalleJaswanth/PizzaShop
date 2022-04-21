@@ -1,14 +1,16 @@
 .add-block {
-  border: 1px solid rgb(252, 75, 31);
+  /* border: 1px solid rgb(252, 75, 31); */
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 50%;
 }
 
 .add {
-  padding: 15px;
+  padding: 5px 10px;
   color: rgb(252, 75, 31);
+  border-radius: 5px;
 }
 .add:hover {
   background-color: rgba(252, 75, 31, 0.37);
@@ -16,13 +18,14 @@
 }
 
 .count {
-  padding: 15px;
+  padding: 5px 10px;
   color: black;
 }
 
 .delete {
-  padding: 15px;
+  padding: 5px 12px;
   color: rgb(252, 75, 31);
+  border-radius: 5px;
 }
 .delete:hover {
   background-color: rgba(252, 75, 31, 0.37);

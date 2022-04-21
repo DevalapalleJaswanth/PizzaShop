@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddBlock.css';
 export default function AddBlock(props) {
   return (
     <div className="add-block">

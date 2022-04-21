@@ -1,6 +1,6 @@
 const getPizzaData = (obj) => {
   return {
-    type: 'ADD',
+    type: 'GET',
     payload: obj,
   };
 };
