@@ -5,5 +5,5 @@ const getPizzaData = (obj) => {
   };
 };
 export default {
-  getMFData,
+  getPizzaData,
 };
