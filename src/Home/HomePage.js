@@ -7,24 +7,38 @@ import axios from 'axios';
 export default function HomePage() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const PizzaList = useSelector((state) => state.PizzaList);
-  const Items = useSelector((state) => state.Items);
+  const Pizzas = useSelector((state) => state.PizzaList);
+  // const Items = useSelector((state) => state.Items);
   const user = useSelector((state) => state.User);
   const navigate = useNavigate();
   useEffect(() => {
     let response = axios
       .get('https://6215fab47428a1d2a3567953.mockapi.io/pizza')
       .then((resp) => {
-        dispatch(allActions.PizzaListActions.getPizzaData(resp.data));
+        //console.log(resp.data);
+        dispatch(allActions.PizzaListActions.getPizzaListData(resp.data));
+      })
+      .catch((err) => console.log(err));
+    let respon = axios
+      .get('https://6215fab47428a1d2a3567953.mockapi.io/pizzaitems')
+      .then((resp) => {
+        //console.log(resp.data);
+        dispatch(allActions.PizzaListActions.getPizzaItemsData(resp.data));
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(state, PizzaList, Items);
+  //console.log(state, PizzaList);
   return (
     <div>
-      {PizzaList &&
-        PizzaList !== [] &&
-        PizzaList.map((ele, i) => <PizzaCard pizza={ele} key={i} />)}
+      {Pizzas.list &&
+        Pizzas !== [] &&
+        Pizzas.list.map((ele, i) => (
+          <PizzaCard
+            pizza={ele}
+            key={i}
+            pizzaItems={Pizzas.items && Pizzas.items}
+          />
+        ))}
     </div>
   );
 }

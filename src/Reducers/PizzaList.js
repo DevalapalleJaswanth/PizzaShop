@@ -1,7 +1,10 @@
-const PizzaList = (state = [], action) => {
+const PizzaList = (state = {}, action) => {
+  //console.log(action);
   switch (action.type) {
-    case 'GET':
-      return [...action.payload];
+    case 'GETLIST':
+      return { list: [...action.payload], ...state };
+    case 'GETITEMS':
+      return { items: [...action.payload], ...state };
 
     default:
       return state;
