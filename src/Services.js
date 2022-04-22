@@ -2,13 +2,10 @@ import axios from 'axios';
 export async function updatePizzaItems(obj, id) {
   console.log(obj, id);
   try {
-    let y = await axios.post(
+    let y = await axios.put(
       `https://6215fab47428a1d2a3567953.mockapi.io/pizzaitems/${id}`,
       {
-        id: id,
-        label: obj.label,
-        item: obj.item,
-        count: obj.count,
+        ...obj,
       }
     );
     console.log(y);

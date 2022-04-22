@@ -7,6 +7,7 @@ import axios from 'axios';
 import './HomePage.css';
 import { updatePizzaItems } from '../Services';
 export default function HomePage() {
+  const [order, setOrder] = useState([]);
   const [count, setCount] = useState();
   const [inventory, setInventory] = useState();
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export default function HomePage() {
   //   Pizzas = useSelector((state) => state.PizzaList);
   // },[Pizzas])
 
-  console.log(Pizzas);
+  console.log(Pizzas, order);
 
   function handleUpdate(item, i) {
     let obj;
@@ -59,9 +60,11 @@ export default function HomePage() {
 
     setInventory([...temp]);
     console.log(temp, inventory);
-    Pizzas.items = [...temp];
+
     //dispatch(allActions.PizzaListActions.getPizzaItemsData([...temp]));
     updatePizzaItems(obj, index);
+    Pizzas.items = [...temp];
+    setCount('');
   }
 
   return (
@@ -77,11 +80,24 @@ export default function HomePage() {
                   pizza={ele}
                   key={i}
                   pizzaItems={Pizzas.items && Pizzas.items}
+                  setOrder={setOrder}
                 />
               ))}
           </div>
         ) : (
           <div>
+            <button
+              style={{
+                backgroundColor: 'black',
+                color: 'white',
+                width: '60px',
+              }}
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              Back
+            </button>
             <h1>Admin Inventory Page</h1>
             <br />
             {Pizzas.items &&
@@ -114,9 +130,12 @@ export default function HomePage() {
                               style={{
                                 backgroundColor: 'black',
                                 color: 'white',
+                                width: '60px',
                               }}
                               onClick={(e) => {
-                                handleUpdate(ele, i);
+                                if (count !== '') {
+                                  handleUpdate(ele, i);
+                                }
                               }}
                             >
                               Update
