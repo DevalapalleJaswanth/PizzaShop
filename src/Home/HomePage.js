@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import allActions from '../Actions';
 import axios from 'axios';
+import './HomePage.css';
 export default function HomePage() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -29,7 +30,7 @@ export default function HomePage() {
   }, []);
   //console.log(state, PizzaList);
   return (
-    <div>
+    <div className="flex">
       {Pizzas.list &&
         Pizzas !== [] &&
         Pizzas.list.map((ele, i) => (
