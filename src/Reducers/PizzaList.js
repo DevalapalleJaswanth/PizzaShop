@@ -1,7 +1,7 @@
 const PizzaList = (state = [], action) => {
   switch (action.type) {
     case 'GET':
-      return [...state, ...action.payload];
+      return [...action.payload];
 
     default:
       return state;
