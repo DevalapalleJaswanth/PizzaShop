@@ -12,8 +12,8 @@ export default function Card({ pizza, pizzaItems }) {
         return { ...item, showDropDown: false };
       });
     setItems(temp);
-  }, []);
-  console.log(state);
+  }, [pizzaItems]);
+  //console.log(items);
   return (
     <div className="card">
       <div>

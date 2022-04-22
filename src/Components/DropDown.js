@@ -18,16 +18,16 @@ export default function DropDown({
           if (showDropDown) {
             let temp =
               items &&
+              label &&
               items.map((ele) => {
-                if (ele.label === label) {
-                  return { ...ele, showDropDown: false };
-                }
+                return { ...ele, showDropDown: false };
               });
-            setItems(temp);
+            setItems([...temp]);
             setState('');
           } else {
             let temp =
               items &&
+              label &&
               items.map((ele) => {
                 if (ele.label === label) {
                   return { ...ele, showDropDown: true };
@@ -35,7 +35,7 @@ export default function DropDown({
                   return { ...ele, showDropDown: false };
                 }
               });
-            setItems(temp);
+            setItems([...temp]);
             setState([...item]);
           }
         }}
