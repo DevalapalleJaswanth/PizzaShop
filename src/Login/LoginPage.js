@@ -8,7 +8,7 @@ export default function LoginPage() {
   const User = useSelector((state) => state.User);
   //console.log(User);
   const [user, setUser] = useState({
-    name: '',
+    email: '',
     password: '',
   });
   const [error, setError] = useState();
@@ -30,18 +30,35 @@ export default function LoginPage() {
     if (errKeys.length >= 1) {
       alert('Please fill all fields');
     } else {
-      let check =
+      //console.log(user, User[0], User[1]);
+      let check1 =
         User.length > 0
-          ? User.filter((ele) => {
-              if (user.name === ele.name && ele.password === user.password) {
+          ? User[0].filter((ele) => {
+              if (
+                user.email.toLowerCase() === ele.email.toLowerCase() &&
+                ele.password === user.password
+              ) {
                 return ele;
               }
             })
           : '';
-      //console.log(User, user);
-      if (check.length > 0) {
+      let check2 =
+        User.length > 0
+          ? User[1].filter((ele) => {
+              if (
+                user.email.toLowerCase() === ele.email.toLowerCase() &&
+                ele.password === user.password
+              ) {
+                return ele;
+              }
+            })
+          : '';
+
+      if (check1.length > 0) {
         //console.log(user, error);
-        navigate('/HomePage', { state: { user: check[0] } });
+        navigate('/HomePage', { state: { user: check1[0], role: 'admin' } });
+      } else if (check2.length > 0) {
+        navigate('/HomePage', { state: { user: check2[0], role: 'customer' } });
       } else {
         alert('user name or password are not correct');
       }
@@ -57,15 +74,15 @@ export default function LoginPage() {
         >
           <h2>Login</h2>
           <div className="flex-column">
-            <label>Name:</label>
+            <label>Email:</label>
             <input
               type="text"
-              id="Name"
-              name="name"
+              id="Email"
+              name="email"
               onChange={(e) => {
                 handleChange(e);
               }}
-              value={user.name}
+              value={user.email}
             />
             <div className="error">{error && error.name}</div>
           </div>

@@ -4,6 +4,8 @@ const User = (state = [], action) => {
       return [...state, { id: state.length, ...action.payload }];
     case 'UPDATE':
       return [...action.payload];
+    case 'GET':
+      return [...action.payload];
     default:
       return state;
   }

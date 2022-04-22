@@ -12,7 +12,15 @@ const updateUser = (obj) => {
   };
 };
 
+const getUsers = (obj) => {
+  return {
+    type: 'GET',
+    payload: obj,
+  };
+};
+
 export default {
   createUser,
   updateUser,
+  getUsers,
 };

@@ -11,16 +11,15 @@ import axios from 'axios';
 
 export default function App() {
   const dispatch = useDispatch();
-  const mutualFund = useSelector((state) => state.PizzaList);
+  const PizzaList = useSelector((state) => state.PizzaList);
   const user = useSelector((state) => state.User);
   useEffect(() => {
     let resp = axios
       .get('https://6215fab47428a1d2a3567953.mockapi.io/user')
-      .then((resp) => console.log(resp.data))
+      .then((resp) => dispatch(allActions.UserActions.getUsers(resp.data)))
       .catch((err) => console.log(err));
-
-    //  dispatch(allActions.MutualFundActions.getMFData(mfDetails));
   }, []);
+  console.log(user);
   return (
     <div className="App">
       <BrowserRouter>

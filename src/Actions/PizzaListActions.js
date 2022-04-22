@@ -6,7 +6,7 @@ const getPizzaListData = (obj) => {
   };
 };
 const getPizzaItemsData = (obj) => {
-  //console.log(obj, 'action');
+  console.log(obj, 'action');
   return {
     type: 'GETITEMS',
     payload: obj,

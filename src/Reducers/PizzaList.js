@@ -1,5 +1,5 @@
 const PizzaList = (state = {}, action) => {
-  //console.log(action);
+  console.log(action);
   switch (action.type) {
     case 'GETLIST':
       return { list: [...action.payload], ...state };
