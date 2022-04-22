@@ -5,6 +5,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import allActions from '../Actions';
 import axios from 'axios';
 import './HomePage.css';
+import { updatePizzaItems } from '../Services';
 export default function HomePage() {
   const [count, setCount] = useState();
   const [inventory, setInventory] = useState();
@@ -39,13 +40,17 @@ export default function HomePage() {
   console.log(Pizzas);
 
   function handleUpdate(item, i) {
+    let obj;
+    let index;
     let temp =
       Pizzas.items &&
       Pizzas !== [] &&
       Pizzas.items.map((ele, j) => {
         if (ele.label === item.label) {
+          index = ele.id;
           let tempCount = [...ele.count];
           tempCount[i] = +count;
+          obj = { ...ele, count: [...tempCount] };
           return { ...ele, count: [...tempCount] };
         } else {
           return { ...ele };
@@ -55,7 +60,8 @@ export default function HomePage() {
     setInventory([...temp]);
     console.log(temp, inventory);
     Pizzas.items = [...temp];
-    dispatch(allActions.PizzaListActions.getPizzaItemsData([...temp]));
+    //dispatch(allActions.PizzaListActions.getPizzaItemsData([...temp]));
+    updatePizzaItems(obj, index);
   }
 
   return (
